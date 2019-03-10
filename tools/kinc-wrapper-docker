@@ -1,0 +1,39 @@
+#!/bin/bash
+
+input_matrix_targz=$1
+input_matrix=$2
+job_index_input=$3
+num_jobs=$4
+colnum=$5
+rownum=$6
+
+#echo "Loading modules ..."
+#module load gcc/6.4.0
+#module load gsl
+#module load mixmod
+#module load openblas
+#echo "Module loading done."
+
+#export LD_LIBRARY_PATH=/cvmfs/connect.opensciencegrid.org/modules/packages/linux-rhel7-x86_64/gcc-4.8.5spack/gcc-6.4.0-k5eggrz3xdhuomx6vhowwfis4spkuhfy/lib64:$LD_LIBRARY_PATH
+
+#tar -xzf $input_matrix_targz
+#rm $input_matrix_targz
+#chmod +x kinc
+
+START_TS=`date +'%s'`
+
+/bin/kinc similarity --ematrix $input_matrix --rows $rownum --cols $colnum --headers --method sc --omit_na --na_val NA --clustering mixmod --criterion ICL --min_obs 30 --num_jobs $num_jobs --job_index $job_index_input > kinc.out.$job_index_input
+tar czf clusters-sc$job_index_input.tar.gz clusters-sc
+RC=$?
+
+END_TS=`date +'%s'`
+DIFF_TS=$(($END_TS - $START_TS))
+if [ $DIFF_TS -lt 300 ]; then
+    #sleep 5m
+    sleep 5s
+fi
+
+echo "job $job_index_input runtime=$DIFF_TS s"
+
+exit $RC
+
