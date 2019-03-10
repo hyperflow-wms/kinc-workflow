@@ -9,6 +9,7 @@ RUN dnf -y install \
 	openblas \
 	vim \
 	wget \
+	procps \
 	findutils
 	
 WORKDIR /home
