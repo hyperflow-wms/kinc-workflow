@@ -1,3 +1,25 @@
+# OSG-KINC HyperFlow Port
+Port of the Pegasus OSG-KINC workflow to HyperFlow. New in this repository:
+- `Dockerfile` for the `kinc` command
+- HyperFlow workflow generator script `gen_workflow.sh`
+
+Example running of a kinc job using the Docker container:
+```
+docker run -v <work_dir>:/home hyperflowwms/hfkinc /bin/kinc-wrapper Yeast-GEM.tar.gz Yeast-GEM.txt 2 1000 188 7051
+```
+where `work_dir` is a local directory that should contain the `Yeast-GEM.txt` file and where the output files will be generated. 
+
+Generation of a workflow:
+```
+git clone https://github.com/balis/OSG-KINC
+cd OSG-KINC
+./gen_workflow.sh [-c command_name] num_jobs
+```
+Where 
+- `command_name` is the optional name of the command to be used in the output `workflow.json`
+- `num_jobs` is the number of jobs to be generated in the workflow
+
+
 # OSG-KINC
 
 OSG-KINC is a Pegasus workflow that is configured to run on the Open Science Grid.  The workflow uses the Knowledge Independent Network Construction (KINC) software package to build a similarity matrix representing correlation analysis of all pairwise comparisons of genes/transcripts in a Gene Expression Matrix (GEM).  
