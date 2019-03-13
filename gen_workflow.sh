@@ -10,7 +10,7 @@
 
 if [ $# -eq 0 ] ; then
 	echo
-	echo "Usage: gen_workflow.sh num_jobs"
+	echo "Usage: gen_workflow.sh [-c command_name] num_jobs"
 	echo
 	exit 1
 fi
