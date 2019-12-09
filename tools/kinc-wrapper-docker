@@ -22,7 +22,7 @@ rownum=$6
 
 START_TS=`date +'%s'`
 
-/bin/kinc similarity --ematrix $input_matrix --rows $rownum --cols $colnum --headers --method sc --omit_na --na_val NA --clustering mixmod --criterion ICL --min_obs 30 --num_jobs $num_jobs --job_index $job_index_input > kinc.out.$job_index_input
+kinc similarity --ematrix $input_matrix --rows $rownum --cols $colnum --headers --method sc --omit_na --na_val NA --clustering mixmod --criterion ICL --min_obs 30 --num_jobs $num_jobs --job_index $job_index_input > kinc.out.$job_index_input
 tar czf clusters-sc$job_index_input.tar.gz clusters-sc
 RC=$?
 
