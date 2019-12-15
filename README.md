@@ -19,7 +19,7 @@ Where
 - `command_name` is the optional name of the command to be used in the output `workflow.json` (default is `{{function}}` -- a variable that can be set as [explained here](https://github.com/hyperflow-wms/hyperflow/wiki/Workflow-description-format#support-for-templates).
 - `num_jobs` is the number of jobs to be generated in the workflow. The more jobs you set, the shorter they will be. Set at least `10000` for a reasonable run time of a single job. 
 
-Note: the `gen_workflow.sh` script requires Docker.
+This will generate `workflow.josn` in the current directory. Note: the `gen_workflow.sh` script requires Docker.
 
 ## Running locally
 The generated workflow can be run using the command:
