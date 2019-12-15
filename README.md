@@ -1,23 +1,34 @@
-# OSG-KINC HyperFlow Port
+# OSG-KINC worklow -- HyperFlow port
 Port of the Pegasus OSG-KINC workflow to HyperFlow. New in this repository:
 - `Dockerfile` for the `kinc` command
 - HyperFlow workflow generator script `gen_workflow.sh`
 
-Example running of a kinc job using the Docker container:
-```
-docker run -v <work_dir>:/home hyperflowwms/hfkinc /bin/kinc-wrapper Yeast-GEM.tar.gz Yeast-GEM.txt 2 1000 188 7051
-```
-where `work_dir` is a local directory that should contain the `Yeast-GEM.txt` file and where the output files will be generated. 
+## Build and publish image
+HyperFlow Docker image contains kinc binaries and HyperFlow job executor
+- `make` -- build the container and push to Docker Hub
+- `make container` -- build the container
 
-Generation of a workflow:
+## Generate workflow
+To generate a workflow, run the following commands:
 ```
-git clone https://github.com/balis/OSG-KINC
-cd OSG-KINC
+git clone https://github.com/hyperflow-wms/kinc-workflow
+cd kinc-worklfow
 ./gen_workflow.sh [-c command_name] num_jobs
 ```
 Where 
-- `command_name` is the optional name of the command to be used in the output `workflow.json`
-- `num_jobs` is the number of jobs to be generated in the workflow
+- `command_name` is the optional name of the command to be used in the output `workflow.json` (default is `{{function}}` -- a variable that can be set as [explained here](https://github.com/hyperflow-wms/hyperflow/wiki/Workflow-description-format#support-for-templates).
+- `num_jobs` is the number of jobs to be generated in the workflow. The more jobs you set, the shorter they will be. Set at least `10000` for a reasonable run time of a single job. 
+
+Note: the `gen_workflow.sh` script requires Docker.
+
+## Running locally
+The generated workflow can be run using the command:
+```
+. run.sh
+```
+
+## Running in Kubernetes
+...
 
 
 # OSG-KINC
