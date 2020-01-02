@@ -27,8 +27,9 @@ The generated workflow can be run using the command:
 . run.sh
 ```
 
-## Running in Kubernetes
-...
+## Running in a Kubernetes cluster
+
+To run the workflow on a Kubernetes cluster, you can use the [HyperFlow-k8s-deployment project](https://github.com/hyperflow-wms/hyperflow-k8s-deployment). 
 
 
 # OSG-KINC
